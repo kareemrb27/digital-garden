@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   description: "A personal space for thoughts, identity, and growth.",
 };
 
+import Script from "next/script";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,9 +28,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-      </head>
       <body
         className={cn(
           outfit.variable,
@@ -36,6 +35,7 @@ export default function RootLayout({
           "antialiased bg-background text-foreground min-h-screen font-sans"
         )}
       >
+        <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="beforeInteractive" />
         {children}
       </body>
     </html>
