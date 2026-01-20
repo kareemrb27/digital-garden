@@ -1,0 +1,35 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+site_url: "http://localhost:3000"
+display_url: "http://localhost:3000"
+
+collections:
+  - name: "journal"
+    label: "Journal"
+    folder: "content/journal"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Category", name: "category", widget: "select", options: ["AI", "Finance", "Mental Models", "Life"] }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "MMM DD, YYYY" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "frameworks"
+    label: "Mental Models"
+    folder: "content/frameworks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Icon Name", name: "icon", widget: "string" }
+      - { label: "Color Class", name: "color", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }
