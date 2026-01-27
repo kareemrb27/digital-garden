@@ -6,10 +6,10 @@ const CONTENT_PATH = path.join(process.cwd(), "content");
 
 export type Post = {
     slug: string;
-    title: string;
-    excerpt: string;
+    title?: string;
+    excerpt?: string;
     date: string;
-    category: string;
+    category?: string;
     content: string;
     readTime?: string;
 };
@@ -27,7 +27,7 @@ export async function getPostBySlug(category: string, slug: string): Promise<Pos
             excerpt: data.excerpt,
             date: data.date,
             category: data.category,
-            readTime: "5 min read", // Placeholder, can calculate real time later
+            readTime: "1 min read",
         };
     } catch (error) {
         return null;
@@ -37,6 +37,9 @@ export async function getPostBySlug(category: string, slug: string): Promise<Pos
 export async function getAllPosts(categoryDir: string = "journal"): Promise<Post[]> {
     try {
         const dirPath = path.join(CONTENT_PATH, categoryDir);
+        if (!fs.existsSync(dirPath)) {
+            return [];
+        }
         const files = fs.readdirSync(dirPath);
 
         const posts = files
@@ -45,15 +48,15 @@ export async function getAllPosts(categoryDir: string = "journal"): Promise<Post
                 const slug = file.replace(".mdx", "");
                 const filePath = path.join(dirPath, file);
                 const fileContent = fs.readFileSync(filePath, "utf-8");
-                const { data } = matter(fileContent);
+                const { data, content } = matter(fileContent);
 
                 return {
                     slug,
-                    title: data.title,
-                    excerpt: data.excerpt,
+                    title: data.title || "",
+                    excerpt: data.excerpt || content.slice(0, 100),
                     date: data.date,
-                    category: data.category,
-                    content: "", // We don't need content for listing
+                    category: data.category || "Thought",
+                    content: content,
                 };
             })
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

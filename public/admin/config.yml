@@ -30,3 +30,17 @@ collections:
       - { label: "Icon Name", name: "icon", widget: "string" }
       - { label: "Color Class", name: "color", widget: "string" }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "thoughts"
+    label: "Running Thoughts"
+    folder: "content/thoughts"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{body}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title (for URL)", name: "title", widget: "string" }
+      - { label: "Content", name: "body", widget: "markdown" }
+      - { label: "Date", name: "date", widget: "datetime", format: "MMM DD, YYYY" }
+
