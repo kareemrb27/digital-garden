@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { getPostBySlug } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
@@ -17,7 +15,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <Navbar />
             <main className="flex-1 pb-24">
                 {/* Article Header */}
                 <header className="relative py-20 px-4 md:px-6 border-b border-border/40 bg-muted/10">
@@ -62,7 +59,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     </div>
                 </article>
             </main>
-            <Footer />
         </div>
     );
 }

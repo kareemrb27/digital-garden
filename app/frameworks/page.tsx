@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { Brain, ArrowUpRight, Scale, Search, Target } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -50,7 +48,6 @@ const frameworks = [
 export default function FrameworksPage() {
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <Navbar />
             <main className="flex-1 py-16 md:py-24 px-4 md:px-6">
                 <div className="container mx-auto max-w-6xl space-y-16">
 
@@ -99,7 +96,6 @@ export default function FrameworksPage() {
 
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }

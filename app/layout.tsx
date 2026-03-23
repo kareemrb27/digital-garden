@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 };
 
 import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -32,11 +35,22 @@ export default function RootLayout({
         className={cn(
           outfit.variable,
           libreBaskerville.variable,
-          "antialiased bg-background text-foreground min-h-screen font-sans"
+          "antialiased bg-background text-foreground min-h-screen font-sans flex flex-col"
         )}
       >
-        <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="beforeInteractive" />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="beforeInteractive" />
+          <Navbar />
+          <main className="flex-1 w-full relative">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

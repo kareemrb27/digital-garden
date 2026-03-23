@@ -1,11 +1,8 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import { IdentitySwitcher } from "@/components/content/IdentitySwitcher";
 
 export default function AboutPage() {
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <Navbar />
             <main className="flex-1 py-16 md:py-24 px-4 md:px-6">
                 <div className="container mx-auto space-y-16">
                     {/* Header */}
@@ -42,7 +39,6 @@ export default function AboutPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }

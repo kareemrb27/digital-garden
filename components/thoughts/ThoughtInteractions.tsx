@@ -13,7 +13,7 @@ interface ThoughtInteractionsProps {
 
 export function ThoughtInteractions({ post, slug }: ThoughtInteractionsProps) {
     const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(Math.floor(Math.random() * 10)); // Placeholder
+    const [likes, setLikes] = useState(0); // Removed Math.random() to fix hydration error
 
     const handleLike = () => {
         if (liked) {

@@ -17,7 +17,7 @@ export function ThoughtCard({ post }: ThoughtCardProps) {
                     </div>
                     <div>
                         <p className="font-semibold text-sm">Kareem</p>
-                        <p className="text-xs text-muted-foreground">{new Date(post.date).toLocaleDateString()}</p>
+                        <p className="text-xs text-muted-foreground" suppressHydrationWarning>{new Date(post.date).toLocaleDateString()}</p>
                     </div>
                 </div>
             </div>

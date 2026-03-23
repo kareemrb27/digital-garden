@@ -5,7 +5,9 @@ export function Footer() {
         <footer className="w-full border-t border-border/40 bg-background py-6">
             <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 md:flex-row md:px-6">
                 <p className="text-center text-sm text-muted-foreground md:text-left">
-                    &copy; {new Date().getFullYear()} Kareem. All rights reserved.
+                    <span suppressHydrationWarning>&copy; {new Date().getFullYear()} Kareem. All rights reserved.</span>
+                    <span className="mx-2 text-border">|</span>
+                    <a href="/admin/index.html" className="hover:text-foreground transition-colors">Admin Portal</a>
                 </p>
                 <div className="flex gap-4">
                     <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors group" aria-label="X (formerly Twitter)">

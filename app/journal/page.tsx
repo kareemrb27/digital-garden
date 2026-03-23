@@ -1,5 +1,3 @@
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Brain, DollarSign, Heart } from "lucide-react";
 
@@ -58,7 +56,6 @@ const recentPosts = [
 export default function JournalPage() {
     return (
         <div className="min-h-screen flex flex-col bg-background">
-            <Navbar />
             <main className="flex-1 py-16 md:py-24 px-4 md:px-6">
                 <div className="container mx-auto space-y-16">
 
@@ -116,7 +113,6 @@ export default function JournalPage() {
 
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }
