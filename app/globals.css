@@ -1,28 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Force light mode styling for the Pixis.ai aesthetic */
 :root {
-  /* Light Mode (Soft Paper) */
-  --background: #fbfbfb;
-  --foreground: #18181b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #2c2c2e;
-  --accent-foreground: #fafafa;
-  --border: #e4e4e7;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Dark Mode (Deep Void) */
-    --background: #09090b; /* Zinc 950 */
-    --foreground: #e4e4e7; /* Zinc 200 */
-    --muted: #27272a; /* Zinc 800 */
-    --muted-foreground: #a1a1aa; /* Zinc 400 */
-    --accent: #fafafa; /* White accent */
-    --accent-foreground: #18181b;
-    --border: #27272a;
-  }
+  --background: #ffffff; 
+  --foreground: #0f172a; /* Slate 900 */
+  --muted: #f8fafc; /* Slate 50 */
+  --muted-foreground: #64748b; /* Slate 500 */
+  --accent: #f1f5f9; /* Slate 100 */
+  --accent-foreground: #0f172a;
+  --border: #e2e8f0; /* Slate 200 */
+  
+  /* Pixis-inspired Gradients */
+  --gradient-primary: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%);
+  --gradient-secondary: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
 }
 
 @theme inline {
@@ -35,16 +26,27 @@
   --color-border: var(--border);
 
   --font-sans: var(--font-outfit), sans-serif;
-  --font-serif: var(--font-libre), serif;
+  --font-heading: var(--font-outfit), sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-weight: 700;
+  letter-spacing: -0.025em; /* Sleek tight tracking */
+}
+
+/* Glassmorphism utility for light mode */
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
 }

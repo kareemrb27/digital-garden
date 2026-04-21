@@ -2,71 +2,125 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 export function HomeHero() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8 },
+      opacity: 1, y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
     },
   };
 
   return (
-    <section className="relative min-h-[85vh] flex flex-col justify-center overflow-hidden">
-      {/* Dynamic Background Elements */}
+    <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden pt-20 pb-16">
+      {/* SaaS Light Ambient Background */}
       <div className="absolute inset-0 w-full h-full bg-background -z-20" />
-      <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-gradient-to-br from-indigo-500/10 to-purple-500/10 blur-[120px] -z-10 animate-pulse-slow" />
-      <div className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-[120px] -z-10" />
+      <motion.div 
+        animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-[10%] left-[-10%] w-[50rem] h-[50rem] rounded-full bg-indigo-500/20 blur-[120px] -z-10 mix-blend-multiply" 
+      />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center">
+          
+          {/* Left Column: Text & CTAs */}
+          <motion.div
+            className="flex flex-col items-center xl:items-start text-center xl:text-left space-y-10"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div variants={itemVariants}>
+              <div className="inline-flex items-center rounded-full border border-indigo-200 bg-indigo-50 px-4 py-1.5 text-sm font-medium text-indigo-700 backdrop-blur-sm">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Where technology meets the human experience
+              </div>
+            </motion.div>
+            
+            <motion.div variants={itemVariants} className="space-y-6">
+              <h1 className="font-heading text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-[5.5rem] leading-[1.1]">
+                <span className="block text-foreground mb-2">Welcome to my</span>
+                <span className="block text-transparent bg-clip-text bg-[var(--gradient-primary)]">
+                  Digital Garden
+                </span>
+              </h1>
+              <p className="max-w-[38rem] mx-auto xl:mx-0 leading-relaxed text-muted-foreground text-xl sm:text-2xl font-light">
+                I am <span className="text-foreground font-medium">Kareem</span>. An IT professional, artist, mentor, and thinker synthesizing ideas across disciplines.
+              </p>
+            </motion.div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <motion.div
-          className="mx-auto max-w-4xl space-y-10 text-center md:text-left"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h1 className="font-serif text-5xl font-bold tracking-tight sm:text-7xl lg:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/70">
-              Hello, I&apos;m Kareem.
-            </h1>
-            <p className="max-w-[48rem] mx-auto md:mx-0 leading-relaxed text-muted-foreground text-xl sm:text-2xl font-light">
-              I am an IT professional, but I am also an <span className="text-foreground font-medium">Artist</span>, a <span className="text-foreground font-medium">Mentor</span>, and a <span className="text-foreground font-medium">Thinker</span>.
-            </p>
+            <motion.div variants={itemVariants} className="flex flex-col gap-4 sm:flex-row pt-4">
+              <Link
+                href="/journal"
+                className="group relative inline-flex items-center justify-center h-14 px-8 text-base font-semibold transition-all rounded-full bg-slate-900 text-white hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.3)] duration-300"
+              >
+                Explore the Journal
+                <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center h-14 px-8 text-base font-medium transition-all rounded-full border border-slate-200 bg-white hover:bg-slate-50 hover:text-slate-900 hover:scale-105 duration-300 shadow-sm"
+              >
+                More About Me
+              </Link>
+            </motion.div>
           </motion.div>
 
-          <motion.p variants={itemVariants} className="max-w-[42rem] mx-auto md:mx-0 leading-relaxed text-muted-foreground text-lg sm:text-xl">
-            This is my digital garden—a fluid space to explore the intersections of Technology, Life, and the Human Experience.
-          </motion.p>
+          {/* Right Column: Large Vertical Profile Format with Geometric Background */}
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+            className="w-full max-w-lg mx-auto xl:mr-0 relative group"
+          >
+            {/* The Vertical Container: 3/4 Aspect Ratio */}
+            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-[#ffae92] transition-transform duration-700 group-hover:scale-[1.02]">
+              
+              {/* Abstract Background Elements (Coral/Teal theme from example) */}
+              {/* Teal diagonal sweep */}
+              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-[#1a4a50] origin-bottom-left -skew-y-12 transform scale-110"></div>
+              {/* Accent elements to look 'Pixis' style */}
+              <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
+              <div className="absolute bottom-20 left-10 w-8 h-8 rounded bg-white/20 rotate-45"></div>
+              <div className="absolute top-20 left-12 w-3 h-3 rounded-full bg-[#1a4a50]"></div>
 
-          <motion.div variants={itemVariants} className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start pt-4">
-            <Link
-              href="/journal"
-              className="group relative inline-flex items-center justify-center h-12 px-8 text-sm font-medium transition-all rounded-full bg-foreground text-background hover:scale-105 active:scale-95 shadow-lg shadow-foreground/20"
-            >
-              Read the Journal
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center justify-center h-12 px-8 text-sm font-medium transition-all rounded-full border border-border bg-background/50 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground hover:scale-105 active:scale-95"
-            >
-              More About Me
-            </Link>
+              {/* The Profile Image 
+                  Using mix-blend-multiply helps strip out white backgrounds of the JPEG 
+                  to simulate a cut-out "background replaced" look against the colored geometry. */}
+              <Image 
+                src="/images/Profile_1.jpeg" 
+                alt="Kareem's Profile Image" 
+                fill 
+                priority
+                className="object-cover relative z-10 mix-blend-multiply contrast-125 saturate-50 group-hover:saturate-100 transition-all duration-700" 
+              />
+              
+              {/* Overlay styling for extra polish */}
+              <div className="absolute inset-0 rounded-3xl border border-white/20 z-20 pointer-events-none"></div>
+            </div>
+
+            {/* Floating decorative elements outside the card */}
+            <div className="absolute -right-6 top-1/4 w-12 h-12 rounded-xl bg-white shadow-xl flex items-center justify-center animate-bounce duration-[3000ms]">
+              <Sparkles className="w-5 h-5 text-indigo-500" />
+            </div>
+            <div className="absolute -left-8 bottom-1/3 p-3 rounded-xl bg-white shadow-xl text-xs font-bold text-slate-800 animate-pulse">
+              Strategy &amp; Dev
+            </div>
           </motion.div>
-        </motion.div>
+
+        </div>
       </div>
     </section>
   );

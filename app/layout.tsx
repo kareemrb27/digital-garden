@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, Libre_Baskerville } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
 const outfit = Outfit({
   variable: "--font-outfit",
-  subsets: ["latin"],
-});
-
-const libreBaskerville = Libre_Baskerville({
-  variable: "--font-libre",
-  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
@@ -34,14 +28,13 @@ export default function RootLayout({
       <body
         className={cn(
           outfit.variable,
-          libreBaskerville.variable,
-          "antialiased bg-background text-foreground min-h-screen font-sans flex flex-col"
+          "antialiased bg-background text-foreground min-h-screen font-sans flex flex-col selection:bg-indigo-500/30 selection:text-indigo-200"
         )}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          forcedTheme="light"
           disableTransitionOnChange
         >
           <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="beforeInteractive" />
