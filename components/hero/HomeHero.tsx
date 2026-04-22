@@ -89,12 +89,12 @@ export function HomeHero() {
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-[#ffae92] transition-transform duration-700 group-hover:scale-[1.02]">
               
               {/* Abstract Background Elements (Coral/Teal theme from example) */}
-              {/* Teal diagonal sweep */}
-              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-[#1a4a50] origin-bottom-left -skew-y-12 transform scale-110"></div>
+              {/* Teal diagonal sweep - Much lighter now to ensure face isn't darkened via multiply */}
+              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-cyan-200 origin-bottom-left -skew-y-12 transform scale-110"></div>
               {/* Accent elements to look 'Pixis' style */}
               <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
               <div className="absolute bottom-20 left-10 w-8 h-8 rounded bg-white/20 rotate-45"></div>
-              <div className="absolute top-20 left-12 w-3 h-3 rounded-full bg-[#1a4a50]"></div>
+              <div className="absolute top-20 left-12 w-3 h-3 rounded-full bg-cyan-400"></div>
 
               {/* The Profile Image 
                   Using mix-blend-multiply helps strip out white backgrounds of the JPEG 
