@@ -50,10 +50,10 @@ export function HomeHero() {
             </motion.div>
             
             <motion.div variants={itemVariants} className="space-y-6">
-              <h1 className="font-heading text-5xl font-extrabold tracking-tight sm:text-7xl lg:text-[5.5rem] leading-[1.1]">
-                <span className="block text-foreground mb-2">Welcome to my</span>
-                <span className="block text-transparent bg-clip-text bg-[var(--gradient-primary)]">
-                  Digital Garden
+              <h1 className="font-heading text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-[4.5rem] leading-[1.1]">
+                <span className="block text-foreground mb-2">Welcome to</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-cyan-500 pb-2">
+                  Navigate Systems, Tech and Human Impact
                 </span>
               </h1>
               <p className="max-w-[38rem] mx-auto xl:mx-0 leading-relaxed text-muted-foreground text-lg sm:text-xl font-light">
@@ -111,13 +111,6 @@ export function HomeHero() {
               <div className="absolute inset-0 rounded-3xl border border-white/20 z-20 pointer-events-none"></div>
             </div>
 
-            {/* Floating decorative elements outside the card */}
-            <div className="absolute -right-6 top-1/4 w-12 h-12 rounded-xl bg-white shadow-xl flex items-center justify-center animate-bounce duration-[3000ms]">
-              <Sparkles className="w-5 h-5 text-indigo-500" />
-            </div>
-            <div className="absolute -left-8 bottom-1/3 p-3 rounded-xl bg-white shadow-xl text-xs font-bold text-slate-800 animate-pulse">
-              Strategy &amp; Dev
-            </div>
           </motion.div>
 
         </div>
