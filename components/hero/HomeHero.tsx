@@ -104,13 +104,13 @@ export function HomeHero() {
               {/* Solid Non-Transparent Orange Overlays (z-20, resting ABOVE the image) */}
               {/* Top Diagonal Orange Matte covering the underlying trees perfectly */}
               <div 
-                className="absolute inset-0 bg-orange-500 z-20 pointer-events-none shadow-xl" 
+                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl" 
                 style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 36%)' }}
               ></div>
               
               {/* Bottom Diagonal Orange Matte */}
               <div 
-                className="absolute inset-0 bg-orange-500 z-20 pointer-events-none shadow-xl" 
+                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl" 
                 style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 84%)' }}
               ></div>
               
