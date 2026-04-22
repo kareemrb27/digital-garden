@@ -1,51 +1,23 @@
-import { Brain, ArrowUpRight, Scale, Search, Target } from "lucide-react";
+import { Brain, ArrowUpRight, Scale, Search, Target, HelpCircle, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { getAllPosts } from "@/lib/mdx";
 
-const frameworks = [
-    {
-        title: "First Principles",
-        description: "Boil things down to the most fundamental truths and reason up from there.",
-        category: "Thinking",
-        icon: Brain, // Represents core thinking
-        color: "bg-blue-500/10 text-blue-500",
-        slug: "first-principles",
-    },
-    {
-        title: "Opportunity Cost",
-        description: "The value of the next best alternative that you give up when making a choice.",
-        category: "Decision Making",
-        icon: Scale, // Represents trade-offs
-        color: "bg-emerald-500/10 text-emerald-500",
-        slug: "opportunity-cost",
-    },
-    {
-        title: "Inversion",
-        description: "Avoid stupidity rather than seeking brilliance. Turn problems upside down.",
-        category: "Problem Solving",
-        icon: ArrowUpRight, // Represents a different angle
-        color: "bg-amber-500/10 text-amber-500",
-        slug: "inversion",
-    },
-    {
-        title: "Pareto Principle",
-        description: "80% of consequences come from 20% of the causes. Focus on the vital few.",
-        category: "Productivity",
-        icon: Target, // Represents focus
-        color: "bg-purple-500/10 text-purple-500",
-        slug: "pareto-principle",
-    },
-    {
-        title: "Second-Order Thinking",
-        description: "Ask 'And then what?' to understand the long-term consequences of a decision.",
-        category: "Decision Making",
-        icon: Search, // Represents looking deeper
-        color: "bg-rose-500/10 text-rose-500",
-        slug: "second-order-thinking",
-    },
-];
+function getIconComponent(iconName: string | undefined) {
+    if (!iconName) return HelpCircle;
+    const icons: Record<string, any> = {
+        Brain,
+        ArrowUpRight,
+        Scale,
+        Search,
+        Target
+    };
+    return icons[iconName] || HelpCircle;
+}
 
-export default function FrameworksPage() {
+export default async function FrameworksPage() {
+    const frameworks = await getAllPosts("frameworks");
+
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 py-16 md:py-24 px-4 md:px-6">
@@ -69,8 +41,11 @@ export default function FrameworksPage() {
                         {frameworks.map((fw) => (
                             <div key={fw.slug} className="group relative flex flex-col p-8 rounded-2xl border border-border/50 bg-card hover:border-foreground/20 hover:shadow-lg transition-all duration-300">
                                 <div className="flex items-start justify-between mb-6">
-                                    <div className={cn("p-3 rounded-xl", fw.color)}>
-                                        <fw.icon size={24} />
+                                    <div className={cn("p-3 rounded-xl", fw.color || "bg-indigo-500/10 text-indigo-500")}>
+                                        {(() => {
+                                            const IconComponent = getIconComponent(fw.icon);
+                                            return <IconComponent size={24} />;
+                                        })()}
                                     </div>
                                     <span className="text-xs font-medium text-muted-foreground/80 px-2 py-1 rounded-md bg-muted/50">
                                         {fw.category}
@@ -99,5 +74,3 @@ export default function FrameworksPage() {
         </div>
     );
 }
-
-import { ArrowRight } from "lucide-react";

@@ -25,7 +25,7 @@ export function Navbar() {
                         <Sparkles className="w-4 h-4" />
                     </div>
                     <span className="font-heading text-xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-700">
-                        Kareem
+                        Awareness
                     </span>
                 </Link>
                 

@@ -1,59 +1,38 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles, Brain, DollarSign, Heart } from "lucide-react";
+import { getAllPosts } from "@/lib/mdx";
 
 const categories = [
     {
         name: "AI & Agents",
-        slug: "ai",
+        slug: "AI",
         description: "The future of intelligence and automation.",
         icon: Sparkles,
     },
     {
         name: "Finance",
-        slug: "finance",
+        slug: "Finance",
         description: "Wealth, opportunity, and economic systems.",
         icon: DollarSign,
     },
     {
         name: "Mental Models",
-        slug: "mental-models",
+        slug: "Mental Models",
         description: "Frameworks for better thinking.",
         icon: Brain,
     },
     {
         name: "Life & Relationships",
-        slug: "life",
+        slug: "Life",
         description: "Navigating the human experience.",
         icon: Heart,
     },
 ];
 
-// Placeholder data - in a real app this comes from MDX files
-const recentPosts = [
-    {
-        title: "Why I am Building a Digital Garden",
-        excerpt: "Moving from consumption to creation, and finding purpose in the noise.",
-        date: "Jan 19, 2026",
-        category: "Life",
-        slug: "why-digital-garden",
-    },
-    {
-        title: "Understanding AI Agents",
-        excerpt: "How autonomous agents will change the way we work forever.",
-        date: "Jan 15, 2026",
-        category: "AI",
-        slug: "understanding-ai-agents",
-    },
-    {
-        title: "The Opportunity Cost of Waiting",
-        excerpt: "A mental model for making decisions when you feel stuck.",
-        date: "Jan 10, 2026",
-        category: "Mental Models",
-        slug: "opportunity-cost",
-    },
-];
+export default async function JournalPage() {
+    // Fetch real posts from CMS directory
+    const recentPosts = await getAllPosts("journal");
 
-export default function JournalPage() {
     return (
         <div className="min-h-screen flex flex-col bg-background">
             <main className="flex-1 py-16 md:py-24 px-4 md:px-6">

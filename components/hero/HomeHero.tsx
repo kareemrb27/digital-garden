@@ -56,8 +56,8 @@ export function HomeHero() {
                   Digital Garden
                 </span>
               </h1>
-              <p className="max-w-[38rem] mx-auto xl:mx-0 leading-relaxed text-muted-foreground text-xl sm:text-2xl font-light">
-                I am <span className="text-foreground font-medium">Kareem</span>. An IT professional, artist, mentor, and thinker synthesizing ideas across disciplines.
+              <p className="max-w-[38rem] mx-auto xl:mx-0 leading-relaxed text-muted-foreground text-lg sm:text-xl font-light">
+                Humanity’s greatest gift is the ability to reason, experience, and create a lasting impact. By bringing deliberate consciousness to the forefront and understanding the systems we inhabit, we can nurture our minds to better navigate our surroundings. This project is an exploration of those areas—an attempt to bring my own consciousness into full awareness while inviting you to join me on the journey.
               </p>
             </motion.div>
 

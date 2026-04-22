@@ -16,7 +16,7 @@ export function Footer() {
                                 <Sparkles className="w-4 h-4" />
                             </div>
                             <span className="font-heading text-xl font-bold tracking-tight text-slate-900">
-                                Kareem
+                                Awareness
                             </span>
                         </Link>
                         <p className="text-slate-600 max-w-sm font-light text-base leading-relaxed">
@@ -57,7 +57,7 @@ export function Footer() {
 
                 <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-slate-200">
                     <p className="text-sm text-slate-500" suppressHydrationWarning>
-                        &copy; {new Date().getFullYear()} Kareem. All rights reserved. Built with Next.js.
+                        &copy; {new Date().getFullYear()} Awareness. All rights reserved. Built with Next.js.
                     </p>
                     <div className="flex gap-6 text-sm text-slate-500">
                         <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
