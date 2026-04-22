@@ -86,19 +86,13 @@ export function HomeHero() {
             className="w-full max-w-lg mx-auto xl:mr-0 relative group"
           >
             {/* The Vertical Container: 3/4 Aspect Ratio */}
-            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-[#ffae92] transition-transform duration-700 group-hover:scale-[1.02]">
+            <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-cyan-200 transition-transform duration-700 group-hover:scale-[1.02]">
               
-              {/* Abstract Background Elements (Coral/Teal theme from example) */}
-              {/* Teal diagonal sweep - Much lighter now to ensure face isn't darkened via multiply */}
-              <div className="absolute bottom-0 left-0 w-full h-[65%] bg-cyan-200 origin-bottom-left -skew-y-12 transform scale-110"></div>
-              {/* Accent elements to look 'Pixis' style */}
-              <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-20 left-10 w-8 h-8 rounded bg-white/20 rotate-45"></div>
-              <div className="absolute top-20 left-12 w-3 h-3 rounded-full bg-cyan-400"></div>
+              {/* Accent elements to look 'Pixis' style (moved under the top matte) */}
+              <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl z-0"></div>
+              <div className="absolute bottom-20 left-10 w-8 h-8 rounded bg-white/20 rotate-45 z-0"></div>
 
-              {/* The Profile Image 
-                  Using mix-blend-multiply helps strip out white backgrounds of the JPEG 
-                  to simulate a cut-out "background replaced" look against the colored geometry. */}
+              {/* The Profile Image */}
               <Image 
                 src="/images/Profile_1.jpeg" 
                 alt="Kareem's Profile Image" 
@@ -106,6 +100,19 @@ export function HomeHero() {
                 priority
                 className="object-cover relative z-10 mix-blend-multiply contrast-125 saturate-50 group-hover:saturate-100 transition-all duration-700" 
               />
+
+              {/* Solid Non-Transparent Orange Overlays (z-20, resting ABOVE the image) */}
+              {/* Top Diagonal Orange Matte covering the underlying trees perfectly */}
+              <div 
+                className="absolute inset-0 bg-orange-500 z-20 pointer-events-none shadow-xl" 
+                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 36%)' }}
+              ></div>
+              
+              {/* Bottom Diagonal Orange Matte */}
+              <div 
+                className="absolute inset-0 bg-orange-500 z-20 pointer-events-none shadow-xl" 
+                style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 84%)' }}
+              ></div>
               
               {/* Overlay styling for extra polish */}
               <div className="absolute inset-0 rounded-3xl border border-white/20 z-20 pointer-events-none"></div>
