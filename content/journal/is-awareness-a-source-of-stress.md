@@ -14,8 +14,6 @@ date: Mar 22, 2026
 ---
 Though awareness itself doesn't cause depression but it often changes your relationship with the world i a way that can feel heavy. 
 
-![](/images/luis-villasmil-mlvbmbxfwi4-unsplash.jpg)
-
 ##### 1. The "Ignorance is Bliss" Contrast:
 
 * When we less aware, we tend to live in a state of "autopilot". We accept things as they are without questioning the "Why?"
@@ -42,7 +40,5 @@ To keep awareness from turning into a downward spiral, it helps to pair it with 
 #### A Perspective Shift:
 
 Awareness is a tool like high-powered flashlight. If you shine it only on the shadows in a dark room, the room looks terrifying. If you use it to find the door or the light switch, it becomes the very thing that saves you. 
-
-
 
 *Note: While the initial ideas and reflections in this piece are my own, several key points were inspired by the concept of "[The Burden of Awareness.](https://www.amazon.com/Burden-Awareness-Understanding-Profound-Self-Awareness/dp/B0F2J1ZY3T)" This article serves as a personal synthesis of how that concept integrates with my own experiences of stress and systems thinking.*
