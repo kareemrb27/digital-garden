@@ -3,10 +3,11 @@ import { ArrowRight, CalendarDays, BookOpen, Layers } from "lucide-react";
 import { getAllPosts, Post } from "@/lib/mdx";
 
 export async function RecentEntries() {
-  // Fetch from all categories
-  const journalPosts = await getAllPosts("journal");
-  const thoughtsPosts = await getAllPosts("thoughts");
-  const mentalModelPosts = await getAllPosts("mental-models");
+  const [journalPosts, thoughtsPosts, mentalModelPosts] = await Promise.all([
+    getAllPosts("journal"),
+    getAllPosts("thoughts"),
+    getAllPosts("mental-models"),
+  ]);
 
   // Format array and append root directory so we can link properly
   const formatPostType = (posts: Post[], directory: string) => 

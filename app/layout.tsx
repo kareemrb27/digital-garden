@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
-import "./globals.css";
+import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
 import { cn } from "@/lib/utils";
+import "./globals.css";
 
 const outfit = Outfit({
   variable: "--font-outfit",
@@ -12,11 +16,6 @@ export const metadata: Metadata = {
   title: "My Digital Garden",
   description: "A personal space for thoughts, identity, and growth.",
 };
-
-import Script from "next/script";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -34,10 +33,9 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          forcedTheme="light"
           disableTransitionOnChange
         >
-          <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="beforeInteractive" />
+          <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js" strategy="afterInteractive" />
           <Navbar />
           <main className="flex-1 w-full relative">
             {children}

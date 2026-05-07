@@ -1,23 +1,44 @@
-import { getPostBySlug } from "@/lib/mdx";
+import { getPostBySlug, getAllPosts } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock, Calendar, Brain, ArrowUpRight, Scale, Search, Target, HelpCircle } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, Brain, ArrowUpRight, Scale, Search, Target, HelpCircle, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-function getIconComponent(iconName: string | undefined) {
-    if (!iconName) return HelpCircle;
-    const icons: Record<string, any> = {
-        Brain,
-        ArrowUpRight,
-        Scale,
-        Search,
-        Target
-    };
-    return icons[iconName] || HelpCircle;
+interface PageProps {
+    params: Promise<{ slug: string }>;
 }
 
-export default async function FrameworkDetail({ params }: { params: Promise<{ slug: string }> }) {
+const ICON_MAP: Record<string, LucideIcon> = {
+    Brain,
+    ArrowUpRight,
+    Scale,
+    Search,
+    Target,
+};
+
+function getIconComponent(iconName: string | undefined): LucideIcon {
+    if (!iconName) return HelpCircle;
+    return ICON_MAP[iconName] ?? HelpCircle;
+}
+
+export async function generateStaticParams() {
+    const posts = await getAllPosts("frameworks");
+    return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    const post = await getPostBySlug("frameworks", slug);
+    if (!post) return { title: "Framework Not Found" };
+
+    return {
+        title: `${post.title} | Awareness`,
+        description: post.description || post.excerpt,
+    };
+}
+
+export default async function FrameworkDetail({ params }: PageProps) {
     const resolvedParams = await params;
     const post = await getPostBySlug("frameworks", resolvedParams.slug);
 
@@ -54,7 +75,8 @@ export default async function FrameworkDetail({ params }: { params: Promise<{ sl
                             </p>
                             <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border/40">
                                 <span className="flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" /> {post.date}
+                                    <Calendar className="w-4 h-4" />
+                                    {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
                                 </span>
                                 <span className="flex items-center gap-2">
                                     <Clock className="w-4 h-4" /> {post.readTime}
@@ -66,8 +88,8 @@ export default async function FrameworkDetail({ params }: { params: Promise<{ sl
 
                 {/* Article Content */}
                 <article className="container mx-auto max-w-3xl px-4 md:px-6 py-12">
-                    <div className="prose prose-zinc dark:prose-invert prose-lg max-w-none 
-                prose-headings:font-serif prose-headings:font-bold 
+                    <div className="prose prose-zinc dark:prose-invert prose-lg max-w-none
+                prose-headings:font-serif prose-headings:font-bold
                 prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:text-lg
                 prose-strong:text-foreground prose-strong:font-semibold
                 prose-a:text-foreground prose-a:decoration-1 prose-a:underline-offset-4 hover:prose-a:decoration-2

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Heart, MessageCircle, Share2 } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Post } from '@/lib/mdx';
 
@@ -13,33 +13,30 @@ interface ThoughtInteractionsProps {
 
 export function ThoughtInteractions({ post, slug }: ThoughtInteractionsProps) {
     const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(0); // Removed Math.random() to fix hydration error
+    const [likes, setLikes] = useState(0);
+    const [copied, setCopied] = useState(false);
 
     const handleLike = () => {
-        if (liked) {
-            setLikes(prev => prev - 1);
-        } else {
-            setLikes(prev => prev + 1);
-        }
+        setLikes((prev) => (liked ? prev - 1 : prev + 1));
         setLiked(!liked);
     };
 
     const handleShare = async () => {
-        if (typeof navigator !== 'undefined' && navigator.share) {
+        const url = `${window.location.origin}/thoughts/${slug}`;
+        if (navigator.share) {
             try {
                 await navigator.share({
                     title: 'Check out this thought',
                     text: post.excerpt,
-                    url: window.location.origin + `/thoughts/${slug}`,
+                    url,
                 });
-            } catch (err) {
-                console.error('Error sharing:', err);
+            } catch {
+                // user cancelled share — no action needed
             }
         } else {
-            if (typeof navigator !== 'undefined') {
-                navigator.clipboard.writeText(window.location.origin + `/thoughts/${slug}`);
-                alert('Link copied to clipboard!');
-            }
+            await navigator.clipboard.writeText(url);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
         }
     };
 
@@ -66,9 +63,22 @@ export function ThoughtInteractions({ post, slug }: ThoughtInteractionsProps) {
 
             <button
                 onClick={handleShare}
-                className="ml-auto p-1 rounded-full hover:bg-muted transition-colors text-muted-foreground hover:text-primary"
+                className={cn(
+                    "ml-auto flex items-center gap-1.5 text-xs font-medium px-2 py-1 rounded-md transition-colors",
+                    copied
+                        ? "text-green-600 bg-green-50"
+                        : "text-muted-foreground hover:text-primary hover:bg-muted"
+                )}
+                aria-label="Share"
             >
-                <Share2 className="h-4 w-4" />
+                {copied ? (
+                    <>
+                        <Check className="h-4 w-4" />
+                        Copied
+                    </>
+                ) : (
+                    <Share2 className="h-4 w-4" />
+                )}
             </button>
         </div>
     );

@@ -1,40 +1,42 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
 
-export function HomeHero() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 },
+  },
+};
 
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1, y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+export function HomeHero() {
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section className="relative min-h-[90vh] flex flex-col justify-center overflow-hidden pt-20 pb-16">
       {/* SaaS Light Ambient Background */}
       <div className="absolute inset-0 w-full h-full bg-background -z-20" />
-      <motion.div 
-        animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
+      <motion.div
+        animate={prefersReducedMotion ? undefined : { scale: [1, 1.05, 1], opacity: [0.1, 0.15, 0.1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[10%] left-[-10%] w-[50rem] h-[50rem] rounded-full bg-indigo-500/20 blur-[120px] -z-10 mix-blend-multiply" 
+        className="absolute top-[10%] left-[-10%] w-[50rem] h-[50rem] rounded-full bg-indigo-500/20 blur-[120px] -z-10 mix-blend-multiply"
       />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-16 items-center">
-          
+
           {/* Left Column: Text & CTAs */}
           <motion.div
             className="flex flex-col items-center xl:items-start text-center xl:text-left space-y-10"
@@ -48,7 +50,7 @@ export function HomeHero() {
                 Where technology meets the human experience
               </div>
             </motion.div>
-            
+
             <motion.div variants={itemVariants} className="space-y-6">
               <h1 className="font-heading text-5xl font-extrabold tracking-tight sm:text-6xl lg:text-[4.5rem] leading-[1.1]">
                 <span className="block text-foreground mb-2">Welcome to</span>
@@ -57,7 +59,7 @@ export function HomeHero() {
                 </span>
               </h1>
               <p className="max-w-[38rem] mx-auto xl:mx-0 leading-relaxed text-muted-foreground text-lg sm:text-xl font-light">
-                Humanity’s greatest gift is the ability to reason, experience, and create a lasting impact. By bringing deliberate consciousness to the forefront and understanding the systems we inhabit, we can nurture our minds to better navigate our surroundings. This project is an exploration of those areas—an attempt to bring my own consciousness into full awareness while inviting you to join me on the journey.
+                Humanity's greatest gift is the ability to reason, experience, and create a lasting impact. By bringing deliberate consciousness to the forefront and understanding the systems we inhabit, we can nurture our minds to better navigate our surroundings. This project is an exploration of those areas—an attempt to bring my own consciousness into full awareness while inviting you to join me on the journey.
               </p>
             </motion.div>
 
@@ -79,7 +81,7 @@ export function HomeHero() {
           </motion.div>
 
           {/* Right Column: Large Vertical Profile Format with Geometric Background */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
@@ -87,37 +89,33 @@ export function HomeHero() {
           >
             {/* The Vertical Container: 3/4 Aspect Ratio */}
             <div className="relative aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl bg-cyan-200 transition-transform duration-700 group-hover:scale-[1.02]">
-              
-              {/* Accent elements to look 'Pixis' style (moved under the top matte) */}
+
+              {/* Accent elements */}
               <div className="absolute top-10 right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl z-0"></div>
               <div className="absolute bottom-20 left-10 w-8 h-8 rounded bg-white/20 rotate-45 z-0"></div>
 
               {/* The Profile Image */}
-              <Image 
-                src="/images/Profile_1.jpeg" 
-                alt="Kareem's Profile Image" 
-                fill 
+              <Image
+                src="/images/Profile_1.jpeg"
+                alt="Kareem's Profile Image"
+                fill
                 priority
-                className="object-cover relative z-10 mix-blend-multiply contrast-125 saturate-50 group-hover:saturate-100 transition-all duration-700" 
+                className="object-cover relative z-10 mix-blend-multiply contrast-125 saturate-50 group-hover:saturate-100 transition-all duration-700"
               />
 
               {/* Solid Non-Transparent Orange Overlays (z-20, resting ABOVE the image) */}
-              {/* Top Diagonal Orange Matte covering the underlying trees perfectly */}
-              <div 
-                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl" 
-                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 36%)' }}
+              <div
+                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl"
+                style={{ clipPath: "polygon(0 0, 100% 0, 100% 20%, 0 36%)" }}
               ></div>
-              
-              {/* Bottom Diagonal Orange Matte */}
-              <div 
-                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl" 
-                style={{ clipPath: 'polygon(0 100%, 100% 100%, 100% 84%)' }}
+
+              <div
+                className="absolute inset-0 bg-[#F47F39] z-20 pointer-events-none shadow-xl"
+                style={{ clipPath: "polygon(0 100%, 100% 100%, 100% 84%)" }}
               ></div>
-              
-              {/* Overlay styling for extra polish */}
+
               <div className="absolute inset-0 rounded-3xl border border-white/20 z-20 pointer-events-none"></div>
             </div>
-
           </motion.div>
 
         </div>

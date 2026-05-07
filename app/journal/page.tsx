@@ -72,7 +72,7 @@ export default async function JournalPage() {
                                 <article key={post.slug} className="group flex flex-col gap-2 relative pl-8 border-l border-border/40 hover:border-foreground/30 transition-colors">
                                     <div className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-border group-hover:bg-foreground transition-colors" />
                                     <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground">
-                                        <span>{post.date}</span>
+                                        <span>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
                                         <span className="w-1 h-1 rounded-full bg-current" />
                                         <span className="text-foreground">{post.category}</span>
                                     </div>

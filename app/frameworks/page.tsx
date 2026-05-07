@@ -1,18 +1,19 @@
-import { Brain, ArrowUpRight, Scale, Search, Target, HelpCircle, ArrowRight } from "lucide-react";
+import { Brain, ArrowUpRight, Scale, Search, Target, HelpCircle, ArrowRight, type LucideIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { getAllPosts } from "@/lib/mdx";
 
-function getIconComponent(iconName: string | undefined) {
+const ICON_MAP: Record<string, LucideIcon> = {
+    Brain,
+    ArrowUpRight,
+    Scale,
+    Search,
+    Target,
+};
+
+function getIconComponent(iconName: string | undefined): LucideIcon {
     if (!iconName) return HelpCircle;
-    const icons: Record<string, any> = {
-        Brain,
-        ArrowUpRight,
-        Scale,
-        Search,
-        Target
-    };
-    return icons[iconName] || HelpCircle;
+    return ICON_MAP[iconName] ?? HelpCircle;
 }
 
 export default async function FrameworksPage() {

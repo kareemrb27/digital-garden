@@ -17,6 +17,12 @@ export type Post = {
     description?: string;
 };
 
+function calculateReadTime(content: string): string {
+    const wordCount = content.trim().split(/\s+/).length;
+    const minutes = Math.max(1, Math.round(wordCount / 200));
+    return `${minutes} min read`;
+}
+
 export async function getPostBySlug(category: string, slug: string): Promise<Post | null> {
     try {
         let filePath = path.join(CONTENT_PATH, category, `${slug}.mdx`);
@@ -33,12 +39,13 @@ export async function getPostBySlug(category: string, slug: string): Promise<Pos
             excerpt: data.excerpt || data.description,
             date: data.date,
             category: data.category,
-            readTime: "1 min read",
+            readTime: calculateReadTime(content),
             icon: data.icon,
             color: data.color,
             description: data.description,
         };
     } catch (error) {
+        console.error(`[mdx] failed to load ${category}/${slug}:`, error);
         return null;
     }
 }
@@ -75,7 +82,7 @@ export async function getAllPosts(categoryDir: string = "journal"): Promise<Post
 
         return posts;
     } catch (e) {
-        console.log(e);
+        console.error(`[mdx] failed to load posts from ${categoryDir}:`, e);
         return [];
     }
 }

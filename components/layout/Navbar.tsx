@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { Sparkles } from "lucide-react";
+import { Sparkles, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navItems = [
     { name: "Journal", href: "/journal" },
@@ -12,10 +14,9 @@ const navItems = [
     { name: "About", href: "/about" },
 ];
 
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-
 export function Navbar() {
     const pathname = usePathname();
+    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <nav className="sticky top-0 z-50 w-full glass border-b-0 border-border/40 transition-all duration-300">
@@ -28,8 +29,9 @@ export function Navbar() {
                         Awareness
                     </span>
                 </Link>
-                
+
                 <div className="flex items-center gap-8">
+                    {/* Desktop nav */}
                     <div className="hidden md:flex gap-8">
                         {navItems.map((item) => (
                             <Link
@@ -49,15 +51,54 @@ export function Navbar() {
                             </Link>
                         ))}
                     </div>
-                    
+
                     <div className="flex items-center gap-4">
                         <ThemeToggle />
                         <Link href="/about" className="hidden sm:inline-flex items-center justify-center h-10 px-6 text-sm font-semibold transition-all rounded-full bg-slate-900 text-white hover:bg-indigo-600 hover:scale-105 active:scale-95 shadow-lg shadow-indigo-500/10">
                             Let's Connect
                         </Link>
+                        {/* Mobile hamburger */}
+                        <button
+                            className="md:hidden inline-flex items-center justify-center h-9 w-9 rounded-md border border-border bg-background hover:bg-muted transition-colors"
+                            onClick={() => setMenuOpen((prev) => !prev)}
+                            aria-label={menuOpen ? "Close menu" : "Open menu"}
+                            aria-expanded={menuOpen}
+                        >
+                            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                        </button>
                     </div>
                 </div>
             </div>
+
+            {/* Mobile menu */}
+            {menuOpen && (
+                <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur-sm">
+                    <div className="container mx-auto px-4 py-4 flex flex-col gap-1">
+                        {navItems.map((item) => (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                onClick={() => setMenuOpen(false)}
+                                className={cn(
+                                    "px-4 py-3 rounded-lg text-sm font-semibold transition-colors",
+                                    pathname === item.href
+                                        ? "bg-indigo-50 text-indigo-600"
+                                        : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                )}
+                            >
+                                {item.name}
+                            </Link>
+                        ))}
+                        <Link
+                            href="/about"
+                            onClick={() => setMenuOpen(false)}
+                            className="mt-2 inline-flex items-center justify-center h-10 px-6 text-sm font-semibold rounded-full bg-slate-900 text-white hover:bg-indigo-600 transition-colors"
+                        >
+                            Let's Connect
+                        </Link>
+                    </div>
+                </div>
+            )}
         </nav>
     );
 }

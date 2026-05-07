@@ -59,10 +59,6 @@ export function Footer() {
                     <p className="text-sm text-slate-500" suppressHydrationWarning>
                         &copy; {new Date().getFullYear()} Awareness. All rights reserved. Built with Next.js.
                     </p>
-                    <div className="flex gap-6 text-sm text-slate-500">
-                        <Link href="/privacy" className="hover:text-slate-900 transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-slate-900 transition-colors">Terms of Service</Link>
-                    </div>
                 </div>
             </div>
         </footer>

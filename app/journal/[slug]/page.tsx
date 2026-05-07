@@ -1,11 +1,30 @@
-import { getPostBySlug } from "@/lib/mdx";
+import { getPostBySlug, getAllPosts } from "@/lib/mdx";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Clock, Calendar } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
-export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+interface PageProps {
+    params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+    const posts = await getAllPosts("journal");
+    return posts.map((post) => ({ slug: post.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    const post = await getPostBySlug("journal", slug);
+    if (!post) return { title: "Article Not Found" };
+
+    return {
+        title: `${post.title} | Awareness`,
+        description: post.excerpt,
+    };
+}
+
+export default async function ArticlePage({ params }: PageProps) {
     const resolvedParams = await params;
     const post = await getPostBySlug("journal", resolvedParams.slug);
 
@@ -37,7 +56,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                             </p>
                             <div className="flex items-center gap-6 text-sm text-muted-foreground pt-4 border-t border-border/40">
                                 <span className="flex items-center gap-2">
-                                    <Calendar className="w-4 h-4" /> {post.date}
+                                    <Calendar className="w-4 h-4" />
+                                    {new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
                                 </span>
                                 <span className="flex items-center gap-2">
                                     <Clock className="w-4 h-4" /> {post.readTime}
@@ -49,8 +69,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
                 {/* Article Content */}
                 <article className="container mx-auto max-w-3xl px-4 md:px-6 py-12">
-                    <div className="prose prose-zinc dark:prose-invert prose-lg max-w-none 
-                prose-headings:font-serif prose-headings:font-bold 
+                    <div className="prose prose-zinc dark:prose-invert prose-lg max-w-none
+                prose-headings:font-serif prose-headings:font-bold
                 prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:text-lg
                 prose-strong:text-foreground prose-strong:font-semibold
                 prose-a:text-foreground prose-a:decoration-1 prose-a:underline-offset-4 hover:prose-a:decoration-2
