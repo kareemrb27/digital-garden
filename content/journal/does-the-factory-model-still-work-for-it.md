@@ -5,6 +5,8 @@ excerpt: AI made individual developers faster — so why does your organization
 category: AI
 date: May 25, 2026
 ---
+![](/images/chatgpt-image-may-25-2026-01_22_43-am.png)
+
 Spend time on a delivery floor right now and you’ll see something strange. Developers are shipping faster than they ever have. AI pulls the context of an aging codebase on demand, flags the downstream impact of a change, helps write the tests, runs them. Reviews are glowing. People look, justifiably, like they’re at the top of their game.
 
 And most of them have no idea that the thing they’re excelling at — fast, accurate execution inside a narrow technical lane — is precisely the thing quietly becoming a commodity. Every signal in the day says *you’re winning*. None of them are wired to say *the game is changing underneath you.*
@@ -25,8 +27,6 @@ Let me be unambiguous, because everything that follows depends on it: AI is deli
 
 And yet we are not seeing the value — not at the level that matters: the release, the team, the business outcome. Individual throughput is up; collective value realization is flat. That contradiction is the whole story, and it took me a while to see it wasn’t a contradiction at all.
 
-
-
 ## We made one station faster. The line runs at the speed of the line.
 
 Building and testing is only a slice of delivery. Around it sits everything else: the handoff to the admin team, the dependency on another squad whose priorities aren’t yours, the coordination to land one change across three teams, the architectural review, the legal sign-off, the business approval — and the waiting, so much waiting, for someone to be ready to receive what you finished days ago.
@@ -43,7 +43,6 @@ The skill AI commoditized lives *inside* the fast station. Pure execution — 
 
 What didn’t get commoditized is the ability to see the whole line: to find the real constraint, to know which dependency can be dissolved and which is load-bearing, to work end-to-end from “what is the business trying to do” to “who and what is in the way.” [Gartner](https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026) has a name for the role this produces — the *forward-deployed engineer*, embedded close to the business, solving the whole problem rather than the assigned slice.[2](https://substack.com/home/post/p-199148239#user-content-fn-gartner) That’s the upskilling direction. Not deeper into one framework. Wider, across the whole flow.
 
-## 
 Why almost no one sees it coming
 
 This is the part I find genuinely unsettling. The shift is nearly invisible to the people it most affects — not because they’re complacent, but because every feedback signal in their working life is a *lagging* one, and every lagging signal still reads green.
