@@ -45,6 +45,10 @@ excerpt: >+
 category: Finance
 date: Oct 20, 2026
 ---
+![](/images/nine-courses-bigger-perspective.png)
+
+
+
 A few months ago I started a private page just for myself.
 
 Every time a podcast, a blog post or a course taught me something worth keeping, I wrote it down: how to read the numbers behind a decision, why the same problems keep coming back, how investors think under uncertainty, how to tell a story that actually gets a decision. It was my revision notebook.
@@ -71,4 +75,4 @@ I hope it helps you as much as it’s helping me. I’d love your feedback: what
 
 Which of the nine would you start with?
 
-#Leadership #LifelongLearning #AI #CareerGrowth #ProfessionalDevelopment
+\#Leadership #LifelongLearning #AI #CareerGrowth #ProfessionalDevelopment
