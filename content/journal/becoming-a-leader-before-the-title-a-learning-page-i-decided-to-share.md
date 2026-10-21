@@ -22,7 +22,7 @@ So I’m opening it up:
 
 Each course has worked examples, a real-world case, an exercise on your own work, a short quiz, and the books, podcasts and courses that taught me. It’s free, there’s no sign-up, and your progress stays in your own browser.
 
-https://kareemrb27.github.io/miniLearnings/#home
+[Micro Leadership Courses](https://kareemrb27.github.io/miniLearnings/#home)
 
 This is just the beginning. I’ll keep adding new micro-courses as I learn, so the page will grow with my own journey.
 
