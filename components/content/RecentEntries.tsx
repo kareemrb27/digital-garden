@@ -53,12 +53,25 @@ export async function RecentEntries() {
             <Link 
               key={`${post.directory}-${post.slug}`} 
               href={`/${post.directory}/${post.slug}`}
-              className={`group flex flex-col h-full glass rounded-3xl p-8 transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.2)] hover:-translate-y-2 relative overflow-hidden ${i === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
+              className={`group flex flex-col h-full glass rounded-3xl transition-all duration-500 hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.2)] hover:-translate-y-2 relative overflow-hidden ${i === 0 ? "md:col-span-2 lg:col-span-1" : ""}`}
             >
               {/* Dynamic hover gradient border effect */}
               <div className="absolute inset-0 border-2 border-transparent group-hover:border-indigo-200 rounded-3xl transition-colors duration-500 pointer-events-none" />
               <div className="absolute -right-20 -top-20 w-40 h-40 bg-indigo-50 blur-[50px] group-hover:bg-indigo-100 transition-colors duration-500" />
-              
+
+              <div className="relative z-10 aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-indigo-100 via-slate-100 to-cyan-100">
+                {post.thumbnail && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={post.thumbnail}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                )}
+              </div>
+
+              <div className="flex flex-1 flex-col p-8">
               <div className="flex items-center gap-3 text-xs font-semibold text-muted-foreground mb-6 uppercase tracking-wider relative z-10">
                 <span className="flex items-center bg-indigo-50 text-indigo-600 border border-indigo-100 px-3 py-1 rounded-full">
                   {post.directory.replace("-", " ")}
@@ -83,6 +96,7 @@ export async function RecentEntries() {
                 <BookOpen className="w-4 h-4 mr-2" />
                 Read more
                 <ArrowRight className="w-4 h-4 ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+              </div>
               </div>
             </Link>
           ))}

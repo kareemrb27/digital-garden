@@ -15,7 +15,15 @@ export type Post = {
     icon?: string;
     color?: string;
     description?: string;
+    thumbnail?: string;
 };
+
+// Explicit `thumbnail` frontmatter wins; otherwise fall back to the first markdown image in the body.
+function resolveThumbnail(data: { thumbnail?: string }, content: string): string | undefined {
+    if (data.thumbnail) return data.thumbnail;
+    const match = content.match(/!\[[^\]]*\]\(\s*<?([^)\s>]+)>?[^)]*\)/);
+    return match?.[1];
+}
 
 function calculateReadTime(content: string): string {
     const wordCount = content.trim().split(/\s+/).length;
@@ -43,6 +51,7 @@ export async function getPostBySlug(category: string, slug: string): Promise<Pos
             icon: data.icon,
             color: data.color,
             description: data.description,
+            thumbnail: resolveThumbnail(data, content),
         };
     } catch (error) {
         console.error(`[mdx] failed to load ${category}/${slug}:`, error);
@@ -76,6 +85,7 @@ export async function getAllPosts(categoryDir: string = "journal"): Promise<Post
                     icon: data.icon,
                     color: data.color,
                     description: data.description,
+                    thumbnail: resolveThumbnail(data, content),
                 };
             })
             .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
